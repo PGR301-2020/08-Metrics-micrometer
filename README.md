@@ -54,11 +54,11 @@ I grove trekk kan dette gjøres ved å legge til de riktige avhengighetene til p
 autokonfigurasjon. Micrometer rammeverket kommer som en transitiv avhengighet med Spring Boot Actuator. Så, disse to linjene i build.gradle er det som skal til 
 
 ```xml
-		<dependency>
-			<groupId>io.micrometer</groupId>
-			<artifactId>micrometer-registry-influx</artifactId>
-			<version>1.5.5</version>
-		</dependency>
+<dependency>
+    <groupId>io.micrometer</groupId>
+    <artifactId>micrometer-registry-influx</artifactId>
+    <version>1.5.5</version>
+</dependency>
 ```
 
 Vi kan etter det legge til Metrics i koden vår; 
