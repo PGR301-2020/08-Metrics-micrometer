@@ -4,7 +4,7 @@ I denne labben skal dere bli kjent med hvordan man instrumenterer en Spring Boot
 Micrometer som er integrert i Spring Boot - og tidsseriedatabasen influxDB. Vi skal også se hvordan vi kan bruke Grafana for visualisering 
 
 Koden i dette repositoriet eksponerer et undepunkt på http://localhost:8080/tx - som tar i mot en POST med følgende 
-payload; 
+payload.
 
 ```json
 
@@ -15,7 +15,7 @@ payload;
 	"currency" : "USD"
 }
 ```
-	
+Applikasjon er konfigurert for på levere Metrics til lokal InfluxDB.
 
 ## Start influxDB
 
