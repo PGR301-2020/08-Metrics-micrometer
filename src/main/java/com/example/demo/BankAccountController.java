@@ -20,6 +20,6 @@ public class BankAccountController {
 
     @PostMapping(path = "/tx", consumes = "application/json", produces = "application/json")
     public void addMember(@RequestBody Transaction tx) {
-        meterRegistry.counter("txcount", "currency", tx.getCurrency()).increment();
+        meterRegistry.counter("txcount2", "currency", tx.getCurrency()).increment();
     }
 }

@@ -1,8 +1,18 @@
-# Metrics med Spring Boot, Micrometer og InfluxDB
+# Metrics med Spring Boot, Micrometer, InfluxDB og Grafana 
 
 I denne labben skal dere bli kjent med hvordan man instrumenterer en Spring Boot applikasjon med Metrics. Vi skal bruke rammeverket 
-Micrometer som er integrert i Spring Boot - og tidsseriedatabasen influxDB
+Micrometer som er integrert i Spring Boot - og tidsseriedatabasen influxDB. Vi skal også se hvordan vi kan bruke Grafana for visualisering 
 
+Koden i dette repositoriet eksponerer et undepunkt på http://localhost:8080/tx - som tar i mot en POST med følgende 
+payload; 
+
+{
+	"fromAccount": "16231027916",
+	"toAccount": "16231027916",
+	"amount": 545454545,
+	"currency" : "USD"
+}
+	
 
 ## Start influxDB
 
