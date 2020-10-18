@@ -29,26 +29,7 @@ docker run --name influxdb \
 ````
 
 hvis dere går til http://localhost:8083/ får dere opp et enkelt brukergrensesnitt. 
- 
-## Instrumenter Spring Boot applikasjonen din med MicroMeter
 
-I grove trekk kan dette gjøres ved å legge til de riktige avhengighetene til prosjeketet, og la Spring Boot plukke disse opp med 
-autokonfigurasjon. Micrometer rammeverket kommer som en transitiv avhengighet med Spring Boot Actuator. Så, disse to linjene i build.gradle er det som skal til 
-
-```groovy
-    compile('org.springframework.boot:spring-boot-starter-actuator')
-    compile 'io.micrometer:micrometer-registry-influx:latest.release'
-
-```
-Klassene deres kan da AutoWire inn en Spring Bean av typen MeterRegistry
-```
-  @Autowired
-  private MeterRegistry meterRegistry;
-```
-
-Oppgave;
-
-Leg med ulike typer metrikker (Distribution summary, Counter, Gauge, Timer etc) - Sjekk dokumentasjonen 
 
 ## Visualisering av Metrics 
 
@@ -58,10 +39,39 @@ Start Grafana med docker
 docker run -d -p 3000:3000 --name grafana grafana/grafana:6.5.0
 ```
 
-I grafana, Konfigurer en datasource og bruk følgende verdi som URL
-
+hvis dere går til http://localhost:3000/ får dere opp et enkelt brukergrensesnitt. - I grafana, Konfigurer en datasource og bruk følgende verdi som URL
 ```
 http://host.docker.internal:8086
 ```
+*Velg database "mydb".* Resten av verdiene kan være uendret.
 
-Resten av verdiene kan være uendret. Forsøk å lage et Dashboard med et Panel der 
+ 
+## Instrumenter Spring Boot applikasjonen din med MicroMeter
+
+Det er nå på tide å få noe metrics inn i InfluxDB og visualisere med Grafana. 
+
+I grove trekk kan dette gjøres ved å legge til de riktige avhengighetene til prosjeketet, og la Spring Boot plukke disse opp med 
+autokonfigurasjon. Micrometer rammeverket kommer som en transitiv avhengighet med Spring Boot Actuator. Så, disse to linjene i build.gradle er det som skal til 
+
+```xml
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-influx</artifactId>
+			<version>1.5.5</version>
+		</dependency>
+```
+
+Vi kan etter det legge til Metrics i koden vår; 
+```java 
+@PostMapping(path = "/tx", consumes = "application/json", produces = "application/json")
+    public void addMember(@RequestBody Transaction tx) {
+        meterRegistry.counter("txcount", "currency", tx.getCurrency()).increment();
+    }
+}
+```
+
+
+Oppgave;
+
+Leg med ulike typer metrikker (Distribution summary, Counter, Gauge, Timer etc) - Sjekk dokumentasjonen - https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#production-ready-metrics
+

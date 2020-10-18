@@ -1,7 +1,15 @@
 package com.example.demo;
 
-public class DepositTransaction {
+import lombok.Data;
+import lombok.ToString;
 
-    private String toAccount ;
-    private String ammount ;
+@ToString
+@Data
+public class Transaction {
+
+    private String toAccount;
+    private String fromAccount;
+    private double amount;
+    private String currency;
+
 }
