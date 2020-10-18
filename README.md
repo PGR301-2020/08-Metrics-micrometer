@@ -70,8 +70,11 @@ Vi kan etter det legge til Metrics i koden vår;
 }
 ```
 
-
 Oppgave;
 
-Leg med ulike typer metrikker (Distribution summary, Counter, Gauge, Timer etc) - Sjekk dokumentasjonen - https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#production-ready-metrics
+- Prøv ulike typer metrikker (Distribution summary, Counter, Gauge, Timer etc) - Sjekk dokumentasjonen - 
 
+Nyttig informasjon; 
+
+- https://spring.io/blog/2018/03/16/micrometer-spring-boot-2-s-new-application-metrics-collector
+- https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#production-ready-metrics
