@@ -6,12 +6,15 @@ Micrometer som er integrert i Spring Boot - og tidsseriedatabasen influxDB. Vi s
 Koden i dette repositoriet eksponerer et undepunkt på http://localhost:8080/tx - som tar i mot en POST med følgende 
 payload; 
 
+```json
+
 {
 	"fromAccount": "16231027916",
 	"toAccount": "16231027916",
 	"amount": 545454545,
 	"currency" : "USD"
 }
+```
 	
 
 ## Start influxDB
